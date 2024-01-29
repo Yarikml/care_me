@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:care_me/core/app_colors.dart';
 import 'package:care_me/features/auth/widgets/pages/start_page.dart';
 import 'package:flutter/material.dart';
+import 'package:care_me/locator_service.dart' as di;
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runZonedGuarded(() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await di.init();
+
+      runApp(const MyApp());
+    }, (error, stack) {});
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,7 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: AppColors.primaryColor,
         scaffoldBackgroundColor: Color.fromRGBO(244, 245, 247, 1),
