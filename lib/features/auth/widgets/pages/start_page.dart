@@ -1,3 +1,4 @@
+import 'package:care_me/features/auth/widgets/pages/login_page.dart';
 import 'package:care_me/features/auth/widgets/pages/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -216,15 +217,27 @@ class _StartPageState extends State<StartPage> {
                                 ),
                           ),
                         ),
-                        Text(
-                          'Войти',
-                          style: Theme.of(context).textTheme.bodyMedium!.merge(
-                                TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
                               ),
+                            );
+                          },
+                          child: Text(
+                            'Войти',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .merge(
+                                  TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
+                                ),
+                          ),
                         ),
                       ],
                     ),

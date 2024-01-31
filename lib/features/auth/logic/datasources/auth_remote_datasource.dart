@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:care_me/core/constants.dart';
 import 'package:care_me/features/auth/model/token_entity/token_entity.dart';
 import 'package:dio/dio.dart';
@@ -29,12 +31,13 @@ class AuthRemoteDatasource implements IAuthRemoteDatasource {
     required int phone,
   }) async {
     try {
-      await client.post(
+      final response = await client.post(
         '${Constants.kApiDefaultUrl}/auth/register',
         data: {
           'phone': phone,
         },
       );
+      log(response.data.toString());
     } on Object {
       rethrow;
     }

@@ -15,6 +15,11 @@ abstract class IAuthRepository {
     required final int phone,
     required final String code,
   });
+
+  Future<void> writeTokensToCache({
+    required final TokenEntity token,
+  });
+  Future<TokenEntity?> getTokensFromCache();
 }
 
 class AuthRepository implements IAuthRepository {
@@ -59,6 +64,27 @@ class AuthRepository implements IAuthRepository {
         code: code,
       );
       return token;
+    } on Object {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<TokenEntity?> getTokensFromCache() async {
+    try {
+      final token = await authLocalDatasource.getTokensFromCache();
+      return token;
+    } on Object {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> writeTokensToCache({
+    required TokenEntity token,
+  }) async {
+    try {
+      await authLocalDatasource.writeTokensToCache(token: token);
     } on Object {
       rethrow;
     }

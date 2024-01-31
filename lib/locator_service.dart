@@ -1,3 +1,4 @@
+import 'package:care_me/features/auth/bloc/auth_bloc/auth_bloc.dart';
 import 'package:care_me/features/auth/logic/datasources/auth_local_datasource.dart';
 import 'package:care_me/features/auth/logic/datasources/auth_remote_datasource.dart';
 import 'package:care_me/features/auth/logic/repositories/auth_repository.dart';
@@ -11,10 +12,9 @@ Future<void> init() async {
   //Cubit/Bloc
 
   sl
-
-    /*..registerFactory(
-      () => ReviewBloc(reviewRepository: sl()),
-    )*/
+    ..registerFactory(
+      () => AuthBloc(authRepository: sl()),
+    )
 
     //Repos
     ..registerLazySingleton<IAuthRepository>(

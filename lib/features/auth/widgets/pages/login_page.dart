@@ -7,14 +7,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isChecked = false;
@@ -44,7 +44,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Padding(
                         padding: EdgeInsets.only(top: 32, bottom: 8.0),
                         child: Text(
-                          'Регистрация',
+                          'Вход',
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall!
@@ -94,7 +94,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   _controller.text.isNotEmpty
                               ? () {
                                   context.read<AuthBloc>().add(
-                                        AuthEvent.requestCodeForRegistration(
+                                        AuthEvent.requestCodeForLogin(
                                           phone:
                                               '$countryCode ${_controller.text}',
                                         ),
@@ -116,12 +116,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Text(
-                                'Уже есть аккаунт?',
+                                'Нет аккаунта?',
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                             Text(
-                              'Войти',
+                              'Зарегистрироваться',
                               style:
                                   Theme.of(context).textTheme.bodyMedium!.merge(
                                         TextStyle(
